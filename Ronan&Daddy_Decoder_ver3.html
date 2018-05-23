@@ -37,12 +37,14 @@
       </div>
     </div>
 		<script>
+		//Page Elements
       document.getElementById("encode").addEventListener("click", scrambleMessage);
       document.getElementById("decode").addEventListener("click", unscrambleMessage);
       document.getElementById("expand").addEventListener("click", messageSelector);
       document.getElementById("clear").addEventListener("click", clearInput);
       document.getElementById("clear2").addEventListener("click", clearInput2);
       
+      // Pulls the current hour and generates the appropriate greeting based on the time of day.
       function messageSelector() {
         let hour = new Date().getHours();
         let form = document.getElementById("field");
@@ -53,6 +55,7 @@
           greeting += "Good afternoon "
         } else {greeting += "Good Evening "};
         
+        //Checks the password entered into the User input field and either reveals the rest of the program HTML or Denies access.
         let inputID = document.getElementById("user").value;
         if (inputID === "4581") {
           document.getElementById("welcome").innerHTML = `${greeting}Christopher`;
@@ -62,7 +65,7 @@
         field.setAttribute('style', "diplay: block");
         } else {document.getElementById("welcome").innerHTML= `Access DENIED!`};
       }
-      
+      //Takes the message written in the Encode textarea and scrambles it.
 		function scrambleMessage(code) {
 			let codeToScramble = document.getElementById("code").value;
 			let finalMessage = [];
@@ -88,6 +91,7 @@
 				let returnedMessage = returnedStr.split("").reverse().join("").split(" ").reverse().join("*")
 				document.getElementById("message").innerHTML = returnedMessage;
 			}
+			//Takes a scrambled message copied into the Decode textarea and unscrambles it.
 		function unscrambleMessage(code2) {
 			let messToDecode = document.getElementById("code2").value;
 			let orMessage = [];
@@ -111,7 +115,8 @@
 				}  
 				let decodedMessage = orMessage.join(' ');
 				document.getElementById("message2").innerHTML = decodedMessage;
-			};	
+			};
+		//text Area Clearing buttons.		
 		function clearInput() {
 			document.getElementById("code").value = null;
 			document.getElementById("message").innerHTML = '';
